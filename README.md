@@ -1,7 +1,7 @@
 # ipfs-website
 Serve a static website using IPFS
 
-## Indended workflow
+## Intended workflow
 
 *On your local computer*
 
@@ -12,5 +12,7 @@ Serve a static website using IPFS
 *On your cloud server*
 
     docker run -d --name ipfs -e PIN=QmZfqVvnqesSyFosEAQPZBcfeepfey5efkLZSwm3sySp36 insanity54/ipfs-website
+    
+Note the environment variable `PIN` sent to the container with `-e`. The value is an IPFS hash of the website you want to serve.
     
 Yay, now you have an IPFS hosted website, with your site's data servable from two places. On your local computer, and on your cloud server.
