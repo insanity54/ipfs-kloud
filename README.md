@@ -1,21 +1,52 @@
-# ipfs-website
-Serve a static website using IPFS
+# ipfs-kloud
+Host IPFS content on your infrastructure in an optionally redundant way, with an Ansible playbook for deployment and maintenance.
 
-## Intended workflow
+## Intended workflow (Summary)
 
-*On your local computer*
+Add the IPFS multihashes you would like to host (ipfs pin) to the `multihashes` dictionary in the file, `vars/public.yml`
 
-* make a static html site
-* set up an ipfs node
-* add your static site to ipfs
+Two Ansible tasks are made available via playbook tags, `deploy`, and `update`. Deployment installs everything you need to turn a fresh Ubuntu* VPS into an ipfs-kloud server.
 
-*On your cloud server*
 
-    docker run -d --name ipfs -e PIN=QmZfqVvnqesSyFosEAQPZBcfeepfey5efkLZSwm3sySp36 insanity54/ipfs-website
-    
-Note the environment variable `PIN` sent to the container with `-e`. The value is an IPFS hash of the website you want to serve.
-    
-Yay, now you have an IPFS hosted website, with your site's data servable from two places. On your local computer, and on your cloud server.
+
+## Workflow Detail
+
+[Ansible](https://docs.ansible.com/ansible/intro_installation.html) is an amazing tool for deployment/operations/managment of web services. Using Ansible, you can be at your laptop, and run a "playbook" which can make changes on thousands of servers. Ansible does not require "agent" software on each of these servers. Instead, it runs remote commands using SSH. Check out the official [Ansible](https://ansible.com/) website for more details.
+
+If you're new to Ansible, you'll need an inventory file. This is the file that tracks your inventory of servers. I put mine at `~/.ansible-inventory`. Some people like making a new inventory file relative each project. Mine looks like this-
+
+```
+[monitoring]
+foxxy
+twobee
+
+
+[kloud]
+foxxy
+twobee
+worlds
+
+
+[teamspeak]
+foxxy
+
+
+foxxy ansible_ssh_host=xxx.xxx.xxx.xxx
+twobee ansible_ssh_host=xxx.xxx.xxx.xxx
+worlds ansible_ssh_host=xxx.xxx.xxx.xxx
+```
+
+You can see I have three projects. `monitoring`, `kloud`, and `teamspeak`. Then I have three servers, `foxxy`, `twobee`, and `worlds`. This inventory file tells Ansible that I want the monitoring project to run on foxxy & twobee, the kloud project should run on foxxy/twobee/worlds, and the teamspeak project should run on foxxy.
+
+For more on inventory, check out the official [ansible docs](https://docs.ansible.com/ansible/intro_inventory.html) on the subject.
+
+When you get started with ipfs-kloud, it needs to be deployed to your servers. To do this, we use the `ansible-playbook` command, telling it to carry out the tasks which have been tagged with the tag, `deploy` (-t). Ansible also needs to know about our inventory of servers (-i). Finally, Ansible needs to know what playbook we want it to run.
+
+```
+ansible-playbook -t deploy -i ~/.ansible-inventory ./main.yml
+```
+
+
 
 ## DNS Stuff
 
@@ -38,3 +69,7 @@ Thanks to headbite on the freenode #ipfs IRC for this one. You can swarm connect
     ipfs swarm connect /ip4/x.x.x.x/tcp/4001/ipfs/QmW3ssBgGLANKNKXiRxcQMmxg3FPd3tSwu2Dt96DBLbjBZ
 
 where x.x.x.x is the IP address of your cloud server.
+
+## Footnotes
+
+<sup>1</sup> I'm only familiar with Ubuntu so that's what I tested against, but you're welcome to submit PRs for more distros!
