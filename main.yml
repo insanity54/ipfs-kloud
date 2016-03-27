@@ -1,0 +1,11 @@
+---
+
+- hosts: kloud
+  sudo: no
+  vars_files:
+    - vars/public.yml
+    - vars/private.yml
+  roles:
+    - golang
+    - ipfs
+    - kloud

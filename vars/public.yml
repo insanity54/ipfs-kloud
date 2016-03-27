@@ -1,0 +1,44 @@
+---
+
+## uncomment below, adding your own:
+
+#multihashes:
+#  -
+#   desc: "brewster's blog"
+#   hash: QmavE42xtK1VovJFVTVkCR5Jdf761QWtxmvak9Zx718TVr
+# -
+#   desc: "@insanity54 remix of @mindsforge ld32 song"
+#   hash: QmWHAt5JzbAparPXG5WNbMd68JKbJQKiashA1P6MYAF134
+# -
+#   desc: "insanity54 arrow"
+#   hash: QmSUJ1MF6RHQPekK3gCNQYtFn2yFtKyJxZSSg9dXzPYJbr
+# -
+#   desc: "krl's geoip data"
+#   hash: QmQQ3BUpPjgYiTdhp4H9YWSCtoFXs8t91njhpvXNNLd3yB
+# -
+#   desc: "ipfs example viewer"
+#   hash: QmTkzDwWqPbnAh5YiV5VwcTLnGdwSNsNTn2aDxdXBFca7D
+# -
+#   desc: "ipfs website"
+#   hash: Qmb8tKfz3RFiasE5yoaaU3d4CF7SaCEh8h2z3g6ZoYGvw6
+# -
+#   desc: "whoah video"
+#   hash: QmPe1snFvRq4v3kiSXELoc2XnFDD1BSUQAbk9wNuPPqa89
+# -
+#   desc: "pitcarin island trip 2012"
+#   hash: QmWom8ULsNCbtMgNMk82aJT7G6gU55mSGxVaC2i1fuyX3s
+# -
+#   desc: "chrome ram"
+#   hash: QmemtbRTH83SxfUkcdDpJysv3UauJuoh1VL7urCBxCzK75
+# -
+#   desc: "funny pic, web dev in assembly"
+#   hash: QmcmX2ViTQkLvfM9qG5jqHMLWWPxeFgUe1veyPEjpPcjot
+# -
+#   desc: "funny pic, I have IPFS"
+#   hash: QmPQN7bUeCsYpLzkcNRWicE6C2o4XAG96x2AANNRz9J3aL
+# -
+#   desc: "funny pic"
+#   hash: QmQK3fpnMLSoH6eWMgNPm4arRM9EL77vSWscneod84F7cg
+# -
+#   desc: "funny pic"
+#   hash: QmajbJa1zyGcu1z7JDKSyz2KXnReMiPPReNmjqHS62WX6H
