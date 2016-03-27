@@ -1,0 +1,16 @@
+web:
+  build: .
+  command: ipfs-website.sh
+  links:
+    - ipfs
+  environment:
+    PIN=QmZfqVvnqesSyFosEAQPZBcfeepfey5efkLZSwm3sySp36
+ipfs-website:
+  image: jbenet/go-ipfs
+  ports:
+    - "80:8080"
+    - "4002:4001"
+    - "5002:5002"
+  volumes:
+    - "/srv/ipfs-website:/ipfs"
+  
