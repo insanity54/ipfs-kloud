@@ -1,0 +1,6 @@
+---
+  - name: Pin your ipfs multihashes
+    command: su - ipfs /bin/bash -c "ipfs pin add "{{ item.hash }}""
+    with_items: "{{ multihashes }}"
+    tags:
+      - update

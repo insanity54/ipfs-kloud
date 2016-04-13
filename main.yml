@@ -6,6 +6,5 @@
     - vars/public.yml
     - vars/private.yml
   roles:
-    - golang
     - ipfs
     - kloud

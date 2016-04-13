@@ -5,15 +5,18 @@ Host IPFS content on your infrastructure in an optionally redundant way, with an
 
 Add the IPFS multihashes you would like to host (ipfs pin) to the `multihashes` dictionary in the file, `vars/public.yml`
 
-Two Ansible tasks are made available via playbook tags, `deploy`, and `update`. Deployment installs everything you need to turn a fresh Ubuntu* VPS into an ipfs-kloud server.
+Two Ansible tasks are made available via playbook tags, `deploy`, and `update`. Deployment installs everything you need to turn a fresh Ubuntu<sup>1</sup> VPS into an ipfs-kloud server, while update makes sure that all your IPFS nodes are pinning your latest list of IPFS multihashes.
 
-
+```
+$ ansible-playbook -i ~/.ansible-inventory -t deploy main.yml
+$ ansible-playbook -i ~/.ansible-inventory -t update main.yml
+```
 
 ## Workflow Detail
 
-[Ansible](https://docs.ansible.com/ansible/intro_installation.html) is an amazing tool for deployment/operations/managment of web services. Using Ansible, you can be at your laptop, and run a "playbook" which can make changes on thousands of servers. Ansible does not require "agent" software on each of these servers. Instead, it runs remote commands using SSH. Check out the official [Ansible](https://ansible.com/) website for more details.
+[Ansible](https://docs.ansible.com/ansible/intro_installation.html) is an amazing tool for deployment/operations/managment of web services. Using Ansible, you can be at your laptop, and run a "playbook" which can make changes on up to thousands of your servers. Ansible does not require "agent" software on each of these servers. Instead, it runs remote commands using SSH. Check out the official [Ansible](https://ansible.com/) website for more details.
 
-If you're new to Ansible, you'll need an inventory file. This is the file that tracks your inventory of servers. I put mine at `~/.ansible-inventory`. Some people like making a new inventory file relative each project. Mine looks like this-
+If you're new to Ansible, you'll need an inventory file. This is the file that tracks your inventory of servers. I put mine at `~/.ansible-inventory`, but some people like making a new inventory file relative each project. Mine looks like this-
 
 ```
 [monitoring]
@@ -40,7 +43,7 @@ You can see I have three projects. `monitoring`, `kloud`, and `teamspeak`. Then 
 
 For more on inventory, check out the official [ansible docs](https://docs.ansible.com/ansible/intro_inventory.html) on the subject.
 
-When you get started with ipfs-kloud, it needs to be deployed to your servers. To do this, we use the `ansible-playbook` command, telling it to carry out the tasks which have been tagged with the tag, `deploy` (-t). Ansible also needs to know about our inventory of servers (-i). Finally, Ansible needs to know what playbook we want it to run.
+When you get started with ipfs-kloud, it needs to be deployed to your servers. To do this, we use the `ansible-playbook` command, telling ansible to carry out the tasks which have been tagged with the tag, `deploy` (-t). Ansible also needs to know about our inventory of servers (-i). Finally, Ansible needs to know what playbook we want it to run.
 
 ```
 ansible-playbook -t deploy -i ~/.ansible-inventory ./main.yml
