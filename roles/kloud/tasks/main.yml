@@ -1,6 +1,29 @@
 ---
-  - name: Pin your ipfs multihashes
-    command: su -c "ipfs pin add "{{ item.hash }}"" "{{ipfs_user}}"
-    with_items: "{{ multihashes }}"
-    tags:
-      - update
+  - name: install nginx
+    apt: name=nginx state=present
+
+  - name: Copy the nginx configuration file
+    template: src={{role_path}}/templates/nginx.conf.j2 dest=/etc/nginx/nginx.conf
+    notify:
+     - restart nginx
+
+  - name: place nginx config
+    template: src={{role_path}}/templates/nginx_ipfs_gateway.conf.j2 dest=/etc/nginx/sites-available/default
+
+
+  - name: create the link to enable site config
+    file: path=/etc/nginx/sites-enabled/default state=link src=/etc/nginx/sites-available/default
+    notify:
+      - reload nginx
+
+
+  - name: start the nginx service
+    service: name=nginx state=started enabled=yes
+
+
+  # - name: Pin your ipfs multihashes
+  #   command: su ipfs -c "/usr/local/bin/ipfs pin add -r --timeout={{ pin_timeout }} {{ item.hash }}"
+  #   with_items: "{{ multihashes }}"
+  #   when: pin == true
+  #   tags:
+  #     - update

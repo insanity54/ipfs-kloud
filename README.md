@@ -1,6 +1,8 @@
 # ipfs-kloud
 Host IPFS content on your infrastructure in an optionally redundant way, with an Ansible playbook for deployment and maintenance.
 
+*UNSTABLE PROJECT* I could not get `ipfs pin` to be called by ansible reliably. It seems to require more RAM than I have available on any of my budget VPS
+
 ## Intended workflow (Summary)
 
 Add the IPFS multihashes you would like to host (ipfs pin) to the `multihashes` dictionary in the file, `vars/public.yml`

@@ -4,3 +4,5 @@
   name: ipfs
 - src: insanity54.bootstrap
   name: bootstrap
+- src: bennojoy.nginx
+  name: nginx

@@ -1,0 +1,10 @@
+---
+
+- hosts: kloud
+  sudo: no
+  gather_facts: yes # disabled so dependencies role below has a chance to install python
+  vars_files:
+    - vars/public.yml
+    - vars/private.yml
+  roles:
+    - kloud

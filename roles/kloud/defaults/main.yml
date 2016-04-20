@@ -1,5 +1,9 @@
 ---
 
+nginx_max_clients: 512
+
+pin: false
+pin_timeout: 3m
 multihashes:
   -
     desc: "brewster's blog"
